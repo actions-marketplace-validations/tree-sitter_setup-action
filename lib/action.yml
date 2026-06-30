@@ -26,7 +26,7 @@ runs:
         TREE_SITTER_REF: ${{inputs.tree-sitter-ref}}
         TREE_SITTER_REPO: https://github.com/tree-sitter/tree-sitter
     - name: Restore tree-sitter library from cache
-      uses: actions/cache/restore@v4
+      uses: actions/cache/restore@v6
       if: env.TREE_SITTER_REF != 'master'
       id: cache-lib
       with:
@@ -78,7 +78,7 @@ runs:
       env:
         PATH_SEP: ${{runner.os != 'Windows' && ':' || ';'}}
     - name: Save tree-sitter library to cache
-      uses: actions/cache/save@v4
+      uses: actions/cache/save@v6
       if: >-
         env.TREE_SITTER_REF != 'master' &&
         steps.cache-lib.outputs.cache-hit != 'true'

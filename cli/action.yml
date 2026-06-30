@@ -26,7 +26,7 @@ runs:
         TREE_SITTER_REF: ${{inputs.tree-sitter-ref}}
         TREE_SITTER_REPO: https://github.com/tree-sitter/tree-sitter
     - name: Restore tree-sitter CLI from cache
-      uses: actions/cache/restore@v4
+      uses: actions/cache/restore@v6
       if: env.TREE_SITTER_REF != 'master'
       id: cache-cli
       with:
@@ -68,7 +68,7 @@ runs:
         config="$(tree-sitter init-config 2>&1 | cut -c32- | tr '\\' '/')"
         printf '{"parser-directories":["%q"]}' "${GITHUB_WORKSPACE%/*}" > "$config"
     - name: Save tree-sitter CLI to cache
-      uses: actions/cache/save@v4
+      uses: actions/cache/save@v6
       if: >-
         env.TREE_SITTER_REF != 'master' &&
         steps.cache-cli.outputs.cache-hit != 'true'

@@ -52,7 +52,7 @@ runs:
             gunzip > "$RUNNER_TOOL_CACHE/tree-sitter/cli/bin/$exe"
           chmod +x "$RUNNER_TOOL_CACHE/tree-sitter/cli/bin/$exe"
         elif [[ $TREE_SITTER_REF =~ ^[[:xdigit:]]{7,40}$ ]]; then
-          cargo install --git "$TREE_SITTER_REPO" --ref "$TREE_SITTER_REF" \
+          cargo install --git "$TREE_SITTER_REPO" --rev "$TREE_SITTER_REF" \
             --root "$RUNNER_TOOL_CACHE/tree-sitter/cli" tree-sitter-cli
         else
           cargo install --git "$TREE_SITTER_REPO" --branch "$TREE_SITTER_REF" \
